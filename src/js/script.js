@@ -44,4 +44,40 @@ $(document).ready(function(){
         });
     });
 
+
+    //validate forms
+    function validateForms(form){
+        $(form).validate({
+            debug: true,
+            rules:{
+                name: {
+                    required: true,
+                    minlength: 2
+                },
+                phone: 'required',
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                name: {
+                    required: "Пожалуйста, ведите свое имя.",
+                    minlength: jQuery.validator.format("Имя должго иметь минимум {0} знака!")
+                },
+                phone: "Пожалуйста, введите свой номер телефона",
+                email: {
+                  required: "Пожалуйста, ведите свою почту.",
+                  email: "Неправильно введен адрес почты"
+                }
+              }
+        });
+    };
+
+    validateForms("#consultation-form");
+    validateForms("#consultation form");
+    validateForms("#order form");
+
+    //mask forms
+    $('input[name=phone]').mask("+7-(999)-999-99-99");
 }); 
